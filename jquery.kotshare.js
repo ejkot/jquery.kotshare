@@ -14,6 +14,7 @@ $.fn.kotshare = function(options) {
 	mainclass : 'social-share',
 	buttons : { 'fb' : true, 'vk' : true, 'tw' : true, 'ok' : true, 'gp' : true},
 	showcount : true,
+	showzero : true,
 	shareurl : ''
   },options);
   if (options.buttons.fb == undefined) options.buttons.fb=true;
@@ -35,13 +36,13 @@ $.fn.kotshare = function(options) {
 		if (options.buttons.fb && options.showcount) {
 			$.getJSON('http://graph.facebook.com/'+options.shareurl+'?callback=?', function(data){
 				if (data.shares!==undefined) var cnt=data.shares; else var cnt=0;
-				$("#fb-id"+i).after("<b>"+cnt+"</b>");
+				if (options.showzero || cnt>0) $("#fb-id"+i).after("<b>"+cnt+"</b>");
 				});
 			}
 		if (options.buttons.tw && options.showcount) {
 			$.getJSON('http://urls.api.twitter.com/1/urls/count.json?url='+options.shareurl+'&callback=?', function(data){
 				if (data.shares!==undefined) var cnt=data.shares; else var cnt=0;
-				$("#tw-id"+i).after("<b>"+cnt+"</b>");
+				if (options.showzero || cnt>0) $("#tw-id"+i).after("<b>"+cnt+"</b>");
 				});
 			}
 					var iza=i;
@@ -52,7 +53,7 @@ $.fn.kotshare = function(options) {
 				window.VK.Share = {
 					count: function(idx, number) {
 					cnt = number;
-					$("#vk-id"+idx).after("<b>"+cnt+"</b>");
+					if (options.showzero || cnt>0) $("#vk-id"+idx).after("<b>"+cnt+"</b>");
 					}
 				}				
 		}
@@ -60,7 +61,7 @@ $.fn.kotshare = function(options) {
 		if (options.buttons.ok && options.showcount) {
 			$.getJSON('http://appsmail.ru/share/count/'+options.shareurl+'?callback=?', function(data){
 				if (data.shares_ok!==undefined) var cnt=data.share_ok; else var cnt=0;
-				$("#ok-id"+i).after("<b>"+cnt+"</b>");
+				if (options.showzero || cnt>0) $("#ok-id"+i).after("<b>"+cnt+"</b>");
 				});
 			}	
 			

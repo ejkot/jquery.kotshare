@@ -19,6 +19,8 @@ buttons :  Array of button switches, true - button enable. ( default : { 'fb' : 
 
 showcount : Show shares counters  (default : true - show shares count)
 
+showzero : Show zero values of sharecounters (default : true - show zero values)
+
 shareurl : Url for share. 
 
 
