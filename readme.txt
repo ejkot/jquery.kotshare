@@ -2,10 +2,10 @@ Jquery kotshare plugin
 Version: 1.0
 Quick start:
 
-1. Link kotshare.css in header of you html.
+1. Link kotshare.css in header of your html.
 2. Place sh-sprite.png near the .css file (must be change in kotshare.css)
 3. Place this code to document.ready block:
-$("MyShareDiv").kotshare({
+$("#MyShareDiv").kotshare({
 		shareurl: 'http://google.com'
 		});
 
