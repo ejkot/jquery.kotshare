@@ -41,7 +41,7 @@ $.fn.kotshare = function(options) {
 			}
 		if (options.buttons.tw && options.showcount) {
 			$.getJSON('http://urls.api.twitter.com/1/urls/count.json?url='+options.shareurl+'&callback=?', function(data){
-				if (data.shares!==undefined) var cnt=data.shares; else var cnt=0;
+				if (data.count!==undefined) var cnt=data.count; else var cnt=0;
 				if (options.showzero || cnt>0) $("#tw-id"+i).after("<b>"+cnt+"</b>");
 				});
 			}
@@ -60,7 +60,7 @@ $.fn.kotshare = function(options) {
 			
 		if (options.buttons.ok && options.showcount) {
 			$.getJSON('http://appsmail.ru/share/count/'+options.shareurl+'?callback=?', function(data){
-				if (data.shares_ok!==undefined) var cnt=data.share_ok; else var cnt=0;
+				if (data.share_ok!==undefined) var cnt=data.share_ok; else var cnt=0;
 				if (options.showzero || cnt>0) $("#ok-id"+i).after("<b>"+cnt+"</b>");
 				});
 			}	
