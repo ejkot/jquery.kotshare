@@ -24,12 +24,17 @@ $.fn.kotshare = function(options) {
   if (options.buttons.gp == undefined) options.buttons.gp=true;
    this.each(function(i){ 
 		var my=jQuery(this).get(0);
+		var ktitle=$("meta[name='twitter:title']").attr('content');
+		if (ktitle==undefined) ktitle=' '; else ktitle+=' : ';
+		var kdescr=$("meta[name='twitter:description']").attr('content');
+		if (kdescr==undefined) kdescr=' ';
+		twtext='&text='+ktitle+kdescr;
 		var myhtml='';
 		myhtml+='<ul class="'+options.mainclass+'">';
-		if (options.buttons.fb) myhtml+='<li class="fb"><a href="http://www.facebook.com/sharer.php?u='+options.shareurl+'" id="fb-id'+i+'">FB</a></li>';
-		if (options.buttons.vk) myhtml+='<li class="vk"><a href="http://vkontakte.ru/share.php?url='+options.shareurl+'" id="vk-id'+i+'">–í–ö</a></li>';
-		if (options.buttons.tw) myhtml+='<li class="tw"><a href="http://twitter.com/share?url='+options.shareurl+'" id="tw-id'+i+'">TWITTER</a></li>';
-		if (options.buttons.ok) myhtml+='<li class="ok"><a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl='+options.shareurl+'" id="ok-id'+i+'">–û–ö</a></li>';
+		if (options.buttons.fb) myhtml+='<li class="fb"><a href="http://www.facebook.com/sharer.php?u='+options.shareurl+'" id="fb-id'+i+'">FACEBOOK</a></li>';
+		if (options.buttons.vk) myhtml+='<li class="vk"><a href="http://vkontakte.ru/share.php?url='+options.shareurl+'" id="vk-id'+i+'">¬ ŒÕ“¿ “≈</a></li>';
+		if (options.buttons.tw) myhtml+='<li class="tw"><a href="http://twitter.com/share?url='+options.shareurl+twtext+'" id="tw-id'+i+'">TWITTER</a></li>';
+		if (options.buttons.ok) myhtml+='<li class="ok"><a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl='+options.shareurl+'" id="ok-id'+i+'">Œ </a></li>';
 		if (options.buttons.gp) myhtml+='<li class="gp"><a href="https://plus.google.com/share?url='+options.shareurl+'" id="gp-id'+i+'">GOOGLE+</a></li>';
 		myhtml+='</ul>';
 		$(my).html(myhtml);
